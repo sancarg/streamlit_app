@@ -12,4 +12,4 @@ This repository contains the Streamlit app for the California Housing project.
     pip install -r requirements.txt
 
 3. Run the Streamlit app:
-    streamlit run 
+    streamlit run califo.py
