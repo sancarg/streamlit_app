@@ -18,8 +18,8 @@ df = pd.DataFrame(data.data, columns=data.feature_names)
 df['Target'] = data.target
 # Model building
 def build_model(df):
-    X = df.iloc[:,:-1]
-    y = df.iloc[:,-1]
+    X = df.drop(columns=['Target'])
+    y = df['Target']
 
     st.markdown('**1.2. Data Train-Test Splits**')
     st.write('Training Set')
