@@ -103,6 +103,7 @@ with st.sidebar.subheader('2.2. General Parameters' ):
 #Display The Dataset
 st.subheader('1. Dataset')
 st.table(df.head())
+st.map(df, latitude="Latitude", longitude="Longitude")
 st.info('Awaiting for CSV file to be uploaded.')
 if st.button('Press to use Example Dataset'):
     # California Housing Dataset
