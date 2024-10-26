@@ -16,6 +16,7 @@ st.image("https://th.bing.com/th/id/R.a1d475075bd59c35ce4db0d99b54f44d?rik=mUDMH
 data = fetch_california_housing()
 df = pd.DataFrame(data.data, columns=data.feature_names)
 df['Target'] = data.target
+
 # Model building
 def build_model(df):
     X = df.drop(columns=['Target'])
@@ -101,7 +102,7 @@ with st.sidebar.subheader('2.2. General Parameters' ):
 
 #Display The Dataset
 st.subheader('1. Dataset')
-
+st.table(df.head())
 st.info('Awaiting for CSV file to be uploaded.')
 if st.button('Press to use Example Dataset'):
     # California Housing Dataset
