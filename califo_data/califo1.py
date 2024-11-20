@@ -12,7 +12,9 @@ def build_model(df):
     model = RandomForestRegressor() 
     model.fit(X_train, y_train) 
     st.session_state.model = model 
-    st.session_state.model_trained = True 
+    st.session_state.model_trained = True
+    r2_score = model.score(X_test, y_test) 
+    st.session_state.model_r2_score = r2_score 
     st.write(f"Model trained with R^2 score: {model.score(X_test, y_test):.2f}")
 # Function for user input features
 def user_input_features():
@@ -39,6 +41,7 @@ def user_input_features():
 
 st.subheader('1. Dataset')
 st.info('Awaiting for CSV file to be uploaded.')
+
 if st.button('Press to use Example Dataset'):
     califo = fetch_california_housing()
     df = pd.DataFrame(califo.data, columns=califo.feature_names)
@@ -48,11 +51,18 @@ if st.button('Press to use Example Dataset'):
     st.write(df.head())
     build_model(df)
 
-if st.session_state.get('model_trained', False):
+# Ensure model is trained before allowing predictions
+if 'model' in st.session_state:
+   # Always show the dataset head if available
+   if 'df' in locals():
+       st.write(df.head())
+   
+   # Subheader for predictions
    st.subheader('2. Make Predictions')
    st.info('Specify input features for prediction:')
    input_df = user_input_features()
-
+   
+   # Button to make prediction 
    if st.button('Predict'):
        prediction = st.session_state.model.predict(input_df)
        st.subheader('Prediction')
