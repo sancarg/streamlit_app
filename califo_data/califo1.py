@@ -40,22 +40,23 @@ def user_input_features():
     return features
 
 st.subheader('1. Dataset')
-st.info('Awaiting for CSV file to be uploaded.')
 
 if st.button('Press to use Example Dataset'):
     califo = fetch_california_housing()
     df = pd.DataFrame(califo.data, columns=califo.feature_names)
     df['Target'] = califo.target
+    st.session_state['df'] = df
 
     st.markdown('The fetch_california_housing is used as the example.')
     st.write(df.head())
     build_model(df)
 
 # Ensure model is trained before allowing predictions
-if 'model' in st.session_state:
+if 'model' in st.session_state and st.session_state.model_trained:
    # Always show the dataset head if available
-   if 'df' in locals():
-       st.write(df.head())
+   if 'df' in st.session_state:
+       st.write(st.session_state['df'].head())
+       st.write(f"Model trained with R^2 score: {st.session_state.model_r2_score:.2f}")
    
    # Subheader for predictions
    st.subheader('2. Make Predictions')
