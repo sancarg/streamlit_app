@@ -23,7 +23,7 @@ def user_input_features():
     Population = st.number_input('Population', min_value=0, step=1)
     AveOccup = st.number_input('Average Occupancy', min_value=0.0, step=0.1)
     Latitude = st.number_input('Latitude', min_value=0.0, step=0.0)
-    Longitude = st.number_input('Longitude', min_value=0.0, step=0.01)
+    Longitude = st.number_input('Longitude', min_value=-150.0, step=0.01)
 
     data = { 
         'MedInc': MedInc, 
