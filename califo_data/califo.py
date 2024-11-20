@@ -48,7 +48,7 @@ def build_model(df):
     rf.fit(X_train, y_train)
 
     st.subheader('2. Model Performance')
-    st.info('Random Forest Model will be used', icon=":forest:")
+    st.info('Random Forest Model will be used', icon="🌲")
     st.markdown('**2.1. Training Set**')
     Y_pred_train = rf.predict(X_train)
     st.write('Coefficient of Determination ($R^2$):')
