@@ -3,6 +3,7 @@ import pandas as pd
 from sklearn.datasets import fetch_california_housing 
 from sklearn.model_selection import train_test_split 
 from sklearn.ensemble import RandomForestRegressor
+from sklearn.metrics import r2_score
 
 # Function to build and train the model 
 def build_model(df): 
@@ -13,9 +14,13 @@ def build_model(df):
     model.fit(X_train, y_train) 
     st.session_state.model = model 
     st.session_state.model_trained = True
-    r2_score = model.score(X_test, y_test) 
-    st.session_state.model_r2_score = r2_score 
-    st.write(f"Model trained with R^2 score: {model.score(X_test, y_test):.2f}")
+    y_pred = model.predict(X_test)
+    r2 = r2_score(y_test, y_pred)
+    #r2_score = model.score(X_test, y_test) 
+    #st.session_state.model_r2_score = r2_score 
+    #st.write(f"Model trained with R^2 score: {model.score(X_test, y_test):.2f}")
+    st.session_state.model_r2_score = r2 # Save the R² score in session state
+    st.write(f"Model trained with R^2 score: {r2_score(y_test, y_pred):.2f}")
 # Function for user input features
 def user_input_features():
     MedInc = st.number_input('Median Income', min_value=0.0, step=0.1)
@@ -48,7 +53,6 @@ if st.button('Press to use Example Dataset'):
     st.session_state['df'] = df
 
     st.markdown('The fetch_california_housing is used as the example.')
-    st.write(df.head())
     build_model(df)
 
 # Ensure model is trained before allowing predictions
