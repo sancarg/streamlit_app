@@ -31,10 +31,12 @@ countries_all = df['Entity'].unique()
 countries_selected = []
 
 input_country = st.text_input("Add a country")
-if input_country in countries_all:
-    countries_selected.append(input_country)
-else:
-    st.warning(f"{input_country} is not in the country list")
+
+if input_country:
+    if input_country in countries_all:
+        countries_selected.append(input_country)
+    else:
+        st.warning(f"{input_country} is not in the country list")
 
 df1 = df.query('Entity in @countries_selected' )
 
