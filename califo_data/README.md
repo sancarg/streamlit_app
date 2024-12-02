@@ -19,3 +19,6 @@ This repository contains the Streamlit app for the California Housing project.
 4. Run the Streamlit app:
    ```sh 
     streamlit run califo.py
+5. For prediction:
+   ```sh
+   streamlit run califo2.py
