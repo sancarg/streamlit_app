@@ -4,6 +4,12 @@ from sklearn.datasets import fetch_california_housing
 from sklearn.model_selection import train_test_split 
 from sklearn.ensemble import RandomForestRegressor
 from sklearn.metrics import r2_score
+
+## Page layout
+## Page expands to full width
+st.set_page_config(page_title='The Machine Learning App for Streamlit', layout='wide', page_icon="random")
+st.image("https://th.bing.com/th/id/R.a1d475075bd59c35ce4db0d99b54f44d?rik=mUDMHc3EY%2bYdJQ&riu=http%3a%2f%2fmedia.architecturaldigest.com%2fphotos%2f56abe0b945b074d074914ae1%2fmaster%2fpass%2fcalifornia-homes-03.jpg&ehk=zvWEvCgVPFWcJCrMxFPGeT8CnNOVn%2bOD%2fmKC4DcORQ8%3d&risl=1&pid=ImgRaw&r=0", caption="Architectural Digest", use_column_width=True)
+
 # Function to build and train the model 
 def build_model(df): 
     X = df.drop(columns=['Target']) 
@@ -26,7 +32,7 @@ def build_model(df):
     y_pred = model.predict(X_test)
     r2 = r2_score(y_test, y_pred)
     st.session_state.model_r2_score = r2 # Save the R² score in session state
-    st.write(f"Model trained with R² score: {r2:.2f}")
+    st.write(f"Model trained with R² score: {st.session_state.model_r2_score:.2f}")
 
 # Function for user input features
 def user_input_features():
@@ -52,7 +58,8 @@ def user_input_features():
     features = pd.DataFrame(data, index=[0])
     return features
 
-# Sidebar - Specify parameter settings
+# Sidebar - Specify parameter setting
+st.sidebar.header("Please define parameters before loading dataset!!!")
 with st.sidebar.header('2. Set Parameters'):
     split_size = st.sidebar.slider('Data split ratio (% for Trainin Set)', 10, 90,5)
 
@@ -88,8 +95,7 @@ if 'model' in st.session_state and st.session_state.model_trained:
    # Always show the dataset head if available
    if 'df' in st.session_state:
        st.write(st.session_state['df'].head())
-       st.write(f"Model trained with R^2 score: {st.session_state.model_r2_score:.2f}")
-
+       st.write(f"Model trained with R² score: {st.session_state.model_r2_score:.2f}")
     # Subheader for predictions
    st.subheader('2. Make Predictions')
    st.info('Specify input features for prediction:')
