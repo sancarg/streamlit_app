@@ -96,7 +96,7 @@ if 'model' in st.session_state and st.session_state.model_trained:
    # Always show the dataset head if available
    if 'df' and 'shape' in st.session_state:
        st.write(st.session_state['df'].head())
-       st.write(f"Number of rows and columns : {st.session_state['shape']}")
+       st.write(f"Training Set : {st.session_state['shape']}")
        st.write(f"Model trained with R² score: {st.session_state.model_r2_score:.2f}")
     # Subheader for predictions
    st.subheader('2. Make Predictions')
