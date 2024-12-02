@@ -86,6 +86,7 @@ if st.button('Press to use Example Dataset'):
     df = pd.DataFrame(califo.data, columns=califo.feature_names)
     df['Target'] = califo.target
     st.session_state['df'] = df
+    st.session_state['shape'] = df.shape
 
     st.markdown('The fetch_california_housing is used as the example.')
     build_model(df)
@@ -93,8 +94,9 @@ if st.button('Press to use Example Dataset'):
 # Ensure model is trained before allowing predictions
 if 'model' in st.session_state and st.session_state.model_trained:
    # Always show the dataset head if available
-   if 'df' in st.session_state:
+   if 'df' and 'shape' in st.session_state:
        st.write(st.session_state['df'].head())
+       st.write(f"Number of rows and columns : {st.session_state['shape']}")
        st.write(f"Model trained with R² score: {st.session_state.model_r2_score:.2f}")
     # Subheader for predictions
    st.subheader('2. Make Predictions')
