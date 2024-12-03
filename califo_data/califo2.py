@@ -32,8 +32,7 @@ def build_model(df):
     y_pred = model.predict(X_test)
     r2 = r2_score(y_test, y_pred)
     st.session_state.model_r2_score = r2 # Save the R² score in session state
-    st.write(f"Model trained with R² score: {st.session_state.model_r2_score:.2f}")
-
+    
 # Function for user input features
 def user_input_features():
     MedInc = st.number_input('Median Income', min_value=0.0, step=0.1)
