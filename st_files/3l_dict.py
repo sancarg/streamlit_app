@@ -49,7 +49,7 @@ column = st.selectbox('Select a column', types[st.session_state['type']][sub_cat
 
 # Adding visualization options
 if st.session_state['type'] == 'Categorical':
-    visualization_type = st.selectbox('Select a visualization type', ['Bar Chart', 'Pie Chart', 'Count Plot'])
+    visualization_type = st.selectbox('Select a visualization type', ['Bar Chart', 'Count Plot'])
 else:
     visualization_type = st.selectbox('Select a visualization type', ['Histogram', 'Line Chart', 'Box Plot'])
 
