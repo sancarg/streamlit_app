@@ -1,5 +1,7 @@
 import streamlit as st
 import pandas as pd
+import matplotlib.pyplot as plt 
+import seaborn as sns
 
 df = pd.read_csv('C:/Users/User/Desktop/2017_Yellow_Taxi_Trip_Data.csv')
 df = df[['passenger_count', 'trip_distance', 'PULocationID', 'DOLocationID', 'payment_type', 'fare_amount']]
@@ -45,19 +47,36 @@ column = st.selectbox('Select a column', types[st.session_state['type']][sub_cat
 # within the nested dictionary corresponding to the selected sub-category.
 # This select box (column) further narrows it down to specific columns within that subset.
 
-# Adding visualization options 
-visualization_type = st.selectbox('Select a visualization type', ['Bar Chart', 'Histogram', 'Line Chart']) 
+# Adding visualization options
+if st.session_state['type'] == 'Categorical':
+    visualization_type = st.selectbox('Select a visualization type', ['Bar Chart', 'Pie Chart', 'Count Plot'])
+else:
+    visualization_type = st.selectbox('Select a visualization type', ['Histogram', 'Line Chart', 'Box Plot'])
 
-# Displaying data based on selection 
-if st.session_state['type'] == 'Categorical': 
-    dist = pd.DataFrame(df[column].value_counts()) 
-    if visualization_type == 'Bar Chart': 
-        st.bar_chart(dist) 
-    elif visualization_type == 'Line Chart': 
-        st.line_chart(dist) 
-else: 
-    if visualization_type == 'Histogram': 
-        st.hist(df[column]) 
-    elif visualization_type == 'Line Chart': 
-        st.line_chart(df[column].dropna()) 
-    else: st.table(df[column].describe())
+# Displaying data based on selection
+if st.session_state['type'] == 'Categorical':
+    dist = pd.DataFrame(df[column].value_counts()).head(20)
+    if visualization_type == 'Bar Chart':
+        st.bar_chart(dist)
+    elif visualization_type == 'Pie Chart':
+        fig, ax = plt.subplots()
+        ax.pie(dist[column], labels=dist.index, autopct='%1.1f%%')
+        st.pyplot(fig)
+    elif visualization_type == 'Count Plot':
+        fig, ax = plt.subplots()
+        sns.countplot(x=column, data=df, order=dist.index, ax=ax)
+        plt.xticks(rotation=90)
+        st.pyplot(fig)
+else:
+    if visualization_type == 'Histogram':
+        fig, ax = plt.subplots()
+        ax.hist(df[column].dropna(), bins=20)
+        st.pyplot(fig)
+    elif visualization_type == 'Line Chart':
+        st.line_chart(df[column].dropna())
+    elif visualization_type == 'Box Plot':
+        fig, ax = plt.subplots()
+        sns.boxplot(x=df[column], ax=ax)
+        st.pyplot(fig)
+    else:
+        st.table(df[column].describe())
