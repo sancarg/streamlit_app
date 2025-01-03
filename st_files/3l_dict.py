@@ -45,8 +45,19 @@ column = st.selectbox('Select a column', types[st.session_state['type']][sub_cat
 # within the nested dictionary corresponding to the selected sub-category.
 # This select box (column) further narrows it down to specific columns within that subset.
 
-if st.session_state['type'] == 'Categorical':
-    dist = pd.DataFrame(df[column].value_counts()).head(20)
-    st.bar_chart(dist)
-else:
-    st.table(df[column].describe())
+# Adding visualization options 
+visualization_type = st.selectbox('Select a visualization type', ['Bar Chart', 'Histogram', 'Line Chart']) 
+
+# Displaying data based on selection 
+if st.session_state['type'] == 'Categorical': 
+    dist = pd.DataFrame(df[column].value_counts()) 
+    if visualization_type == 'Bar Chart': 
+        st.bar_chart(dist) 
+    elif visualization_type == 'Line Chart': 
+        st.line_chart(dist) 
+else: 
+    if visualization_type == 'Histogram': 
+        st.hist(df[column]) 
+    elif visualization_type == 'Line Chart': 
+        st.line_chart(df[column].dropna()) 
+    else: st.table(df[column].describe())
