@@ -2,14 +2,14 @@ import streamlit as st
 import pandas as pd
 from sklearn.model_selection import train_test_split
 from sklearn.ensemble import RandomForestRegressor
-from sklearn.metrics import root_mean_squared_error, r2_score, mean_absolute_error
+from sklearn.metrics import mean_squared_error, r2_score
 from sklearn.datasets import fetch_california_housing
 
 #-----------------------------------------------#
 ## Page layout
 ## Page expands to full width
 st.set_page_config(page_title='The Machine Learning App for Streamlit', layout='wide', page_icon="random")
-st.image("https://th.bing.com/th/id/R.a1d475075bd59c35ce4db0d99b54f44d?rik=mUDMHc3EY%2bYdJQ&riu=http%3a%2f%2fmedia.architecturaldigest.com%2fphotos%2f56abe0b945b074d074914ae1%2fmaster%2fpass%2fcalifornia-homes-03.jpg&ehk=zvWEvCgVPFWcJCrMxFPGeT8CnNOVn%2bOD%2fmKC4DcORQ8%3d&risl=1&pid=ImgRaw&r=0", caption="Architectural Digest", use_column_width=True)
+st.image("https://th.bing.com/th/id/R.a1d475075bd59c35ce4db0d99b54f44d?rik=mUDMHc3EY%2bYdJQ&riu=http%3a%2f%2fmedia.architecturaldigest.com%2fphotos%2f56abe0b945b074d074914ae1%2fmaster%2fpass%2fcalifornia-homes-03.jpg&ehk=zvWEvCgVPFWcJCrMxFPGeT8CnNOVn%2bOD%2fmKC4DcORQ8%3d&risl=1&pid=ImgRaw&r=0", caption="Architectural Digest", use_container_width=True)
 
 #-----------------------------------------------#
 # Load example data
@@ -55,7 +55,7 @@ def build_model(df):
     st.info(r2_score(y_train, Y_pred_train))
 
     st.write('Error(RMSE or MAE):')
-    st.info( root_mean_squared_error(y_train, Y_pred_train))
+    st.info( mean_squared_error(y_train, Y_pred_train))
 
     st.markdown('**2.2. Test Set**')
     Y_pred_test = rf.predict(X_test)
@@ -63,7 +63,7 @@ def build_model(df):
     st.info(r2_score(y_test, Y_pred_test))
 
     st.write('Error(RMSE or MAE):')
-    st.info( root_mean_squared_error(y_test, Y_pred_test))
+    st.info( mean_squared_error(y_test, Y_pred_test))
 
     st.subheader('3. Model Parameters')
     st.write(rf.get_params())
