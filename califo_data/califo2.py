@@ -102,6 +102,8 @@ if 'model' in st.session_state and st.session_state.model_trained:
    st.subheader('2. Make Predictions')
    st.info('Specify input features for prediction:')
    input_df = user_input_features()
+   st.write("User Input Features:")
+   st.dataframe(input_df)
 
    # Button to make prediction 
    if st.button('Predict'):
