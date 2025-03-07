@@ -8,7 +8,7 @@ from sklearn.metrics import r2_score
 ## Page layout
 ## Page expands to full width
 st.set_page_config(page_title='The Machine Learning App for Streamlit', layout='wide', page_icon="random")
-st.image("https://th.bing.com/th/id/R.a1d475075bd59c35ce4db0d99b54f44d?rik=mUDMHc3EY%2bYdJQ&riu=http%3a%2f%2fmedia.architecturaldigest.com%2fphotos%2f56abe0b945b074d074914ae1%2fmaster%2fpass%2fcalifornia-homes-03.jpg&ehk=zvWEvCgVPFWcJCrMxFPGeT8CnNOVn%2bOD%2fmKC4DcORQ8%3d&risl=1&pid=ImgRaw&r=0", caption="Architectural Digest", use_column_width=True)
+st.image("https://th.bing.com/th/id/R.a1d475075bd59c35ce4db0d99b54f44d?rik=mUDMHc3EY%2bYdJQ&riu=http%3a%2f%2fmedia.architecturaldigest.com%2fphotos%2f56abe0b945b074d074914ae1%2fmaster%2fpass%2fcalifornia-homes-03.jpg&ehk=zvWEvCgVPFWcJCrMxFPGeT8CnNOVn%2bOD%2fmKC4DcORQ8%3d&risl=1&pid=ImgRaw&r=0", caption="Architectural Digest", use_container_width=True)
 
 # Function to build and train the model 
 def build_model(df): 
@@ -60,7 +60,7 @@ def user_input_features():
 # Sidebar - Specify parameter setting
 st.sidebar.header("Please define parameters before loading dataset!!!")
 with st.sidebar.header('2. Set Parameters'):
-    split_size = st.sidebar.slider('Data split ratio (% for Trainin Set)', 10, 90,5)
+    split_size = st.sidebar.slider('Data split ratio (% for Training Set)', 10, 90,5)
 
 with st.sidebar.subheader('2.1. Learning Parameters'):
     parameter_n_estimators = st.sidebar.slider('Number of estimators (n_estimators)', 0, 1000, 100, 100)
