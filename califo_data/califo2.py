@@ -60,7 +60,7 @@ def user_input_features():
 # Sidebar - Specify parameter setting
 st.sidebar.header("Please define parameters before loading dataset!!!")
 with st.sidebar.header('2. Set Parameters'):
-    split_size = st.sidebar.slider('Data split ratio (% for Training Set)', 10, 90,5)
+    split_size = st.sidebar.slider('Data split ratio (% for Training Set)', 10, 90, 5)
 
 with st.sidebar.subheader('2.1. Learning Parameters'):
     parameter_n_estimators = st.sidebar.slider('Number of estimators (n_estimators)', 0, 1000, 100, 100)
