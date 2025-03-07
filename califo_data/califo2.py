@@ -88,6 +88,7 @@ if st.button('Press to use Example Dataset'):
     st.session_state['shape'] = df.shape
 
     st.markdown('The fetch_california_housing is used as the example.')
+    #Since the st.markdown line is within the block that only runs when the button is pressed, the message will appear after clicking the button and will remain visible in the Streamlit app until the app layout changes
     build_model(df)
 
 # Ensure model is trained before allowing predictions
