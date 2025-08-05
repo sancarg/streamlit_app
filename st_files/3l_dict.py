@@ -37,6 +37,7 @@ sub_category = st.selectbox('Select a sub-category', list(types[st.session_state
 # Options: The options are dynamically generated based on the selected type (‘Categorical’ or ‘Numerical’) 
 # from the radio button. It lists the keys of the nested dictionary corresponding to the selected type.
 # This selectbox select box (sub_category) narrows down the choices to a RELEVANT subset (sub-categories)
+
 # Selectbox for column selection
 
 column = st.selectbox('Select a column', types[st.session_state['type']][sub_category])
