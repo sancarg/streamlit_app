@@ -4,6 +4,9 @@ from sklearn.datasets import fetch_california_housing
 from sklearn.model_selection import train_test_split 
 from sklearn.ensemble import RandomForestRegressor
 from sklearn.metrics import r2_score
+import ssl, certifi
+ssl._create_default_https_context = lambda: ssl.create_default_context(cafile=certifi.where())
+
 
 
 ## Page layout
