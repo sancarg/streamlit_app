@@ -86,8 +86,9 @@ if st.button('Press to use Example Dataset'):
     # The fetch_california_housing() function from sklearn.datasets returns a dictionary-like object called a Bunch, 
     # which contains the data in a structured format. This Bunch object includes attributes like data, target, 
     # feature_names, etc.
-    df = pd.DataFrame(califo.data, columns=califo.feature_names)
-    df['Target'] = califo.target
+    #df = pd.DataFrame(califo.data, columns=califo.feature_names)
+    #df['Target'] = califo.target
+    df = pd.read_csv('california_housing.csv')
     st.session_state['df'] = df
     st.session_state['shape'] = df.shape
 
