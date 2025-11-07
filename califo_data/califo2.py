@@ -15,7 +15,7 @@ st.set_page_config(page_title='The Machine Learning App for Streamlit', layout='
 #st.image("https://th.bing.com/th/id/R.a1d475075bd59c35ce4db0d99b54f44d?rik=mUDMHc3EY%2bYdJQ&riu=http%3a%2f%2fmedia.architecturaldigest.com%2fphotos%2f56abe0b945b074d074914ae1%2fmaster%2fpass%2fcalifornia-homes-03.jpg&ehk=zvWEvCgVPFWcJCrMxFPGeT8CnNOVn%2bOD%2fmKC4DcORQ8%3d&risl=1&pid=ImgRaw&r=0", caption="Architectural Digest", use_container_width=True)
 st.image(
     "California_House.jpg",
-    caption="California State Capitol (Reliable URL)",
+    caption="California State Capitol",
     use_container_width=True
 )
 
