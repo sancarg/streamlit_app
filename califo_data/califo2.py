@@ -17,7 +17,7 @@ st.image("https://th.bing.com/th/id/R.a1d475075bd59c35ce4db0d99b54f44d?rik=mUDMH
 #    "California_House.jpg",
 #    caption="California State Capitol",
 #    use_container_width=True
-)
+#)
 
 # Function to build and train the model 
 def build_model(df): 
